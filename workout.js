@@ -117,7 +117,22 @@ function beep(duration, frequency) {
 }
 
 document.getElementById('startButton').addEventListener('click', function() {
+    // Start the workout
     updateExercise();
     intervalId = setInterval(countdown, 1000);
+
+    // Unlock audio on mobile devices
+    if (!isAudioUnlocked) {
+        // Create and play an empty buffer to unlock the audio
+        var buffer = audioCtx.createBuffer(1, 1, 22050);
+        var source = audioCtx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+        source.start(0);
+
+        // Update the flag
+        isAudioUnlocked = true;
+    }
+
     this.style.display = 'none'; // Hide the start button
 });
