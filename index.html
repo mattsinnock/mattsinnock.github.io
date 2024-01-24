@@ -1,7 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HIIT Workout Timer</title>
+    <style>
+        body {
+            font-size: 16px; /* Adjust base font size */
+            padding: 10px; /* Add some padding */
+        }
+
+        h1, h2 {
+            font-size: 1.5em; /* Larger text for headings */
+        }
+
+        #exerciseName, #instructions {
+            word-wrap: break-word; /* Ensure text wraps */
+        }
+
+        #startButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) { /* Adjustments for smaller screens */
+            body {
+                font-size: 18px; /* Larger font size for readability on small screens */
+            }
+
+            h1, h2 {
+                font-size: 2em;
+            }
+
+            #startButton {
+                font-size: 1.2em;
+                padding: 15px 30px;
+            }
+        }
+    </style>
 </head>
 <body>
     <button id="startButton">Start Workout</button>
