@@ -13,7 +13,7 @@ const exercises = [
 let currentExercise = 0;
 let timeLeft;
 let intervalId;
-let repetitions = 0;
+let sets = 0;
 let isResting = false;
 var isRunning = false;
 var isPaused = false;
@@ -24,13 +24,13 @@ var isAudioUnlocked = false;
 
 function updateExercise() {
     let exerciseDisplay = "Exercise " + (currentExercise + 1) + ": " + exercises[currentExercise].name;
-    let repetitionDisplay = " (Repetition " + (repetitions + 1) + " of 4)";
+    let setDisplay = " (Set " + (sets + 1) + " of 4)";
 
     if (isResting) {
         document.getElementById('exerciseName').innerText = "Rest";
         document.getElementById('instructions').innerText = "Take a short break, breathe deeply.";
     } else {
-        document.getElementById('exerciseName').innerText = exerciseDisplay + repetitionDisplay;
+        document.getElementById('exerciseName').innerText = exerciseDisplay + setDisplay;
         document.getElementById('instructions').innerText = exercises[currentExercise].instructions;
     }
 
@@ -41,10 +41,10 @@ function countdown() {
     if (timeLeft == 0) {
         if (isResting) {
             beep(200, 520); // Beep for 200 ms with a frequency of 520Hz at the end of a set
-            repetitions++;
+            sets++;
             isResting = false;
-            if (repetitions >= 4) {
-                repetitions = 0;
+            if (sets >= 4) {
+                sets = 0;
                 currentExercise++;
                 if (currentExercise >= exercises.length) {
                     currentExercise = 0; // Restart the circuit if at the end
@@ -69,7 +69,7 @@ document.addEventListener('keydown', function(event) {
 
 function skipExercise() {
     clearInterval(intervalId);
-    repetitions = 0;
+    sets = 0;
     currentExercise++;
     if (currentExercise >= exercises.length) {
         currentExercise = 0; // Restart if at the end
