@@ -26,6 +26,38 @@ const workouts = {
         { name: "Kettlebell Goblet Squats", duration: 45, instructions: "Hold the kettlebell close to your chest with both hands, perform a deep squat while keeping your back straight." },
         { name: "Swiss Ball Hamstring Curl", duration: 45, instructions: "Lie on your back, place your heels on the Swiss ball, lift your hips, and roll the ball towards your body using your legs." },
         { name: "Burpees", duration: 45, instructions: "Start in a standing position, drop into a squat with your hands on the ground, kick your feet back into a push-up position, return to squat, then jump up." }
+    ],
+    gluteStretches: [
+        {
+            name: "Glute Bridges",
+            duration: 45,
+            instructions: "Lie on your back with your knees bent and feet flat on the floor, hip-width apart. Squeeze your glutes and lift your hips towards the ceiling. Hold for a second at the top, then slowly lower back down."
+        },
+        {
+            name: "Dead Bug",
+            duration: 45,
+            instructions: "Lie on your back with your arms extended toward the ceiling and legs bent at 90 degrees. Lower your right arm and left leg towards the floor, keeping your lower back pressed into the ground. Return to the start and switch sides."
+        },
+        {
+            name: "Clamshells",
+            duration: 45,
+            instructions: "Lie on your side with knees bent at a 90-degree angle. Keep your feet together and lift your top knee as high as you can while keeping your hips stacked. Lower slowly and repeat."
+        },
+        {
+            name: "Bird Dog",
+            duration: 45,
+            instructions: "Start on all fours with hands under shoulders and knees under hips. Extend your right arm forward and left leg back, keeping your core tight. Hold for a moment, then return to start and switch sides."
+        },
+        {
+            name: "Standing Hamstring Stretch",
+            duration: 45,
+            instructions: "Stand tall and extend one leg in front with your heel on the ground. Keeping your back straight, hinge forward from the hips until you feel a stretch in the hamstrings. Hold and switch sides."
+        },
+        {
+            name: "Seated Piriformis Stretch",
+            duration: 45,
+            instructions: "Sit on a chair and cross one ankle over the opposite knee. Keeping your back straight, lean forward slightly until you feel a stretch in the glutes. Hold and switch sides."
+        }
     ]
 };
 
@@ -45,13 +77,29 @@ var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 var isAudioUnlocked = false;
 
 function updateExercise() {
-    let exerciseDisplay = "Exercise " + (currentExercise + 1) + ": " + currentWorkout[currentExercise].name;
-    let setDisplay = " (Set " + (sets + 1) + " of 4)";
-
     if (isResting) {
+        // Calculate next exercise and set
+        let nextExercise = currentExercise;
+        let nextSet = sets + 1;
+        
+        if (nextSet >= 4) {
+            nextSet = 0;
+            nextExercise++;
+            if (nextExercise >= currentWorkout.length) {
+                nextExercise = 0;
+            }
+        }
+        
+        // Display rest message with next exercise info
         document.getElementById('exerciseName').innerText = "Rest";
-        document.getElementById('instructions').innerText = "Take a short break, breathe deeply.";
+        document.getElementById('instructions').innerText = 
+            `Next up - Exercise ${nextExercise + 1}/${currentWorkout.length}: ` +
+            `${currentWorkout[nextExercise].name} (Set ${nextSet + 1} of 4)\n\n` +
+            `${currentWorkout[nextExercise].instructions}`;
     } else {
+        let exerciseDisplay = `Exercise ${currentExercise + 1}/${currentWorkout.length}: ${currentWorkout[currentExercise].name}`;
+        let setDisplay = ` (Set ${sets + 1} of 4)`;
+        
         document.getElementById('exerciseName').innerText = exerciseDisplay + setDisplay;
         document.getElementById('instructions').innerText = currentWorkout[currentExercise].instructions;
     }
