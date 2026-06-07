@@ -1,56 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HIIT Workout Timer</title>
+    <title>mattsinnock</title>
     <style>
         body {
-            font-size: 16px; /* Adjust base font size */
-            padding: 10px; /* Add some padding */
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 32rem;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            line-height: 1.5;
         }
-
-        h1, h2 {
-            font-size: 1.5em; /* Larger text for headings */
-        }
-
-        #exerciseName, #instructions {
-            word-wrap: break-word; /* Ensure text wraps */
-        }
-
-        #startButton {
-            padding: 10px 20px;
-            font-size: 1em;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 1024px) { /* Adjustments for smaller screens */
-            body {
-                font-size: 18px; /* Larger font size for readability on small screens */
-            }
-
-            h1, h2 {
-                font-size: 2em;
-            }
-
-            #startButton {
-                font-size: 1.2em;
-                padding: 15px 30px;
-            }
-        }
+        ul { padding-left: 1.25rem; }
+        a { font-size: 1.1rem; }
     </style>
 </head>
 <body>
-    <select id="workoutSelector">
-        <option value="kettlebellSwissBall">Kettlebell & Swiss Ball</option>
-        <option value="bodyWeight">Body Weight</option>
-        <option value="combined">Combined</option>
-        <option value="gluteStretches">Glute & Core Stretches</option>
-    </select>
-    <button id="startPauseButton">Start</button>
-
-    <h1><span id="exerciseName"></span></h1>
-    <div id="instructions"></div>
-    <h2>Time Left: <span id="timer"></span></h2>
-    <script src="workout.js"></script>
+    <h1>Apps</h1>
+    <ul>
+        <li><a href="/maths-game/">Maths Rods</a> — Cuisenaire practice for Billie &amp; Keeley</li>
+        <li><a href="/hiit/">HIIT Workout Timer</a></li>
+    </ul>
 </body>
 </html>
